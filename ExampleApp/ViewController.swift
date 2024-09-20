@@ -52,8 +52,8 @@ class ViewController: UIViewController {
 		gradient.startPoint = CGPoint(x: 0, y: 0)
 		gradient.endPoint = CGPoint(x: 1, y: 1)
 		
-		// Добавляем подслой к кнопке
-		view.layer.insertSublayer(gradient, at: 0)  // Градиент на фоне кнопки
+		// Добавляем подслой к супервью
+		view.layer.insertSublayer(gradient, at: 0)  // Градиент на фоне супервью
 	}
 }
 
