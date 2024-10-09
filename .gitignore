@@ -35,15 +35,15 @@ timeline.xctimeline
 playground.xcworkspace
 
 ### Xcode Patch ###
-*.xcodeproj/*
-!*.xcodeproj/project.pbxproj
-!*.xcodeproj/xcshareddata/
-!*.xcworkspace/contents.xcworkspacedata
-/*.gcno
+#*.xcodeproj/*
+#!*.xcodeproj/project.pbxproj
+#!*.xcodeproj/xcshareddata/
+#!*.xcworkspace/contents.xcworkspacedata
+#/*.gcno
 
 ### Projects ###
-*.xcodeproj
-*.xcworkspace
+#*.xcodeproj
+#*.xcworkspace
 
 ### Tuist derived files ###
 graph.dot
