@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         view.addSubview(imageContainerView)
         imageContainerView.addSubview(imageView)
 		setupGradientView()
+        setupLayout()
 	}
 	
 	private func updateNumbers() {
@@ -36,18 +37,16 @@ class ViewController: UIViewController {
 		textLabel.text = "\(firstNumber ?? 0)"
 		textLabel.font = .systemFont(ofSize: 30, weight: .bold)
 		textLabel.textColor = .red
-		textLabel.frame = CGRect(x: 30, y: 30, width: 100, height: 50)
 	}
 	
 	private func setupImageView() {
 		imageView.image = UIImage(named: "raccoon")
-        imageView.frame = imageContainerView.bounds
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
 	}
     
     private func setupImageContainer() {
-        imageContainerView.frame = CGRect(x: 30, y: 130, width: 100, height: 200)
         imageContainerView.layer.shadowColor = UIColor.black.cgColor
         imageContainerView.layer.shadowOffset = CGSize(width: 15, height: 15)
         imageContainerView.layer.shadowOpacity = 1
@@ -64,5 +63,44 @@ class ViewController: UIViewController {
 		// Добавляем подслой к супервью
 		view.layer.insertSublayer(gradient, at: 0)  // Градиент на фоне супервью
 	}
+    
+    private func setupLayout() {
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        imageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let topConstraint = NSLayoutConstraint(
+            item: textLabel,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .top,
+            multiplier: 1.0,
+            constant: 100
+        )
+        
+        let topContstraint = NSLayoutConstraint(
+            item: textLabel,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: view,
+            attribute: .centerX,
+            multiplier: 1.0,
+            constant: 0
+        )
+        
+        NSLayoutConstraint.activate([
+            topConstraint,
+            topContstraint,
+            imageContainerView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 150),
+            imageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            imageContainerView.heightAnchor.constraint(equalToConstant: 200),
+            imageContainerView.widthAnchor.constraint(equalToConstant: 200),
+            imageView.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
+            imageView.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
+            imageView.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
+        ])
+    }
 }
 
